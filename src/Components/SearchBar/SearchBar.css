@@ -1,0 +1,19 @@
+.movieSearch{
+    margin-top: 4em;
+    background: #fff;
+    padding: 1em;
+    width: 100%;
+    border-radius: 10em;
+    -webkit-transition: box-shadow 300ms ease;
+    transition: box-shadow 300ms ease;
+}
+
+.movieSearch input {
+    width: 100%;
+    border-style: none;
+    color: inherit;
+    background-color: transparent;
+    padding-left: 1em;
+    font-size: 1.3em;
+    outline:none;
+}
