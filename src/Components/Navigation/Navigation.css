@@ -2,14 +2,14 @@ nav{
     background: #222;
     height:100px;
     display:flex;
-    padding-left:20px;
     align-items: center;
+    justify-content:space-between;
   }
 
 nav a {
       color:white;
       text-decoration: none;  
-      font-size: 24px;
+      font-size: 18px;
   }
 
   a:hover{
@@ -19,5 +19,19 @@ nav a {
   nav li {
     display:inline-block;
     margin:10px;
-
   }
+
+ 
+ nav ul {
+   padding-right:20px;
+ }
+
+ nav span {
+   display:flex;
+   padding-left:20px;
+   align-items: center;
+ }
+
+ nav span svg{
+   margin-left:5px;
+ }

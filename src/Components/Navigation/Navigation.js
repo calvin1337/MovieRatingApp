@@ -1,20 +1,34 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom"
 import "./Navigation.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFilm} from '@fortawesome/free-solid-svg-icons'
+
 export class Navigation extends Component {
     render() {
         return (
             <nav>
+                <div className="logoContainer">
+                <span>Calvin's Movie Ratings <FontAwesomeIcon icon={faFilm} /></span>
+                </div>
                 <ul>
+                    
                     <li>
-                        <Link>Home</Link>
+                        <Link to="/">Home</Link>
                     </li>
                     <li>
-                        <Link>About</Link>
+                        / 
                     </li>
                     <li>
-                        <Link>Contact</Link>
+                        <Link to="/about">About</Link>
                     </li>
+                    <li>
+                        / 
+                    </li>
+                    <li>
+                        <Link to="/contact">Contact</Link>
+                    </li>
+                   
                 </ul>
             </nav>
         )
