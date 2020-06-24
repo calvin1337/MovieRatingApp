@@ -3,7 +3,7 @@
 const Movies = [
 
     {
-        "title": "IronMan",
+        "title": "Iron Man",
         "rating": 100,
         "release": "2008",
         "image": "https://upload.wikimedia.org/wikipedia/en/0/00/Iron_Man_poster.jpg",
