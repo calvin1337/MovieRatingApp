@@ -20,6 +20,17 @@ export class Homepage extends Component {
                     return movie.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
                 }
             )
+
+            if(!isNaN(this.state.search)){
+                filteredMovie = MovieData.filter(
+                    (movie) => {
+                        return movie.release.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+                    }
+                )
+            }
+
+            
+
         return (
 
             <Container>
