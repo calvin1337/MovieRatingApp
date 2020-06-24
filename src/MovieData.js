@@ -28,7 +28,8 @@ const Movies = [
         "tags": [
             "adventure", "classic"
         ]
-    }
+    },
+    
 
 ]
 

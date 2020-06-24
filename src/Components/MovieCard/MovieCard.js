@@ -7,7 +7,7 @@ import "./MovieCard.css";
 export class MovieCard extends Component {
     render() {
         return (
-            <Col md="6" lg="4" sm="6" xs="12">
+            <Col md="6" lg="4" sm="6" xs="12" style={{marginTop:"10px"}}>
                  <div className="movie-card">
                     <div className="movie-header">
                         <img src={this.props.image} alt="" />
