@@ -7,18 +7,27 @@ import "./MovieCard.css";
 export class MovieCard extends Component {
     render() {
         return (
-            <Col md="4">
+            <Col md="6" lg="4" sm="6" xs="12">
                  <div className="movie-card">
                     <div className="movie-header">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/0/00/Iron_Man_poster.jpg" alt="" />
+                        <img src={this.props.image} alt="" />
                     </div>
                     <div className="movie-content">
                         <div className="movie-content-header">
-                        <h2>Iron Man (2008)</h2>
+                        <h2>{`${this.props.title} (${this.props.date})`} </h2>
                     </div>
                     <div className="movie-info">
-                        <StarRating rating="100"/>
-                        <MovieTags />
+                        <StarRating rating={this.props.rating}/>
+                        <div className="movie-tags">
+                        <div className="tagContainer">
+                            {
+                                this.props.tags.map(tag => (
+                                    <MovieTags name={tag} />
+                                ))
+                            }
+                        </div>
+                        </div>
+                        
                     </div>
                     </div>
                 </div>
