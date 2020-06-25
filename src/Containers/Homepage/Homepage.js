@@ -36,7 +36,18 @@ export class Homepage extends Component {
                     }
                 )
             }
+        
+            let view = ""
 
+            if(this.state.view === "grid"){
+               view = filteredMovie.map(movie => (
+                    <MovieCard title={movie.title} date={movie.release} image={movie.image} rating={movie.rating} tags={movie.tags} />
+                ))
+            }
+
+            if(this.state.view === "list"){
+                view = <h1>List view</h1>
+            }
             
 
         return (
@@ -59,11 +70,7 @@ export class Homepage extends Component {
                 <div className="movieContainer pt-50">
                     <Row>
                         
-                        {
-                            filteredMovie.map(movie => (
-                                <MovieCard title={movie.title} date={movie.release} image={movie.image} rating={movie.rating} tags={movie.tags} />
-                            ))
-                        }
+                        {view}
 
                     </Row>
                 </div>

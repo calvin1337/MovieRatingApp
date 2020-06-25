@@ -36,3 +36,6 @@
     background: #222222 !important;
     color:#fff
 }
+
+button:focus {outline:none;}
+button::-moz-focus-inner {border:0;}
