@@ -3,6 +3,7 @@ import {Container, Row} from "react-bootstrap"
 import SearchBar from '../../Components/SearchBar/SearchBar'
 import MovieCard from '../../Components/MovieCard/MovieCard'
 import MovieData from "../../MovieData";
+import MovieList from "../../Components/MovieCard/MovieList/MovieList"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTh, faBars} from '@fortawesome/free-solid-svg-icons'
 
@@ -71,7 +72,9 @@ export class Homepage extends Component {
             }
 
             if(this.state.view === "list"){
-                view = <h1>List view</h1>
+                view = filteredMovie.map(movie => (
+                    <MovieList title={movie.title} date={movie.release} image={movie.image} rating={movie.rating} tags={movie.tags} />
+                ))
             }
             
 

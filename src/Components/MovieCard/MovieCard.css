@@ -62,4 +62,9 @@ display:flex;
     display:inline-block;
   }
   
-  
+  .movieList{
+    display:flex;
+    align-items: center;
+    justify-content:space-between;
+    border-bottom: 1px solid rgba(46,52,78,.3);
+  }

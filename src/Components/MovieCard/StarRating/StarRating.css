@@ -15,3 +15,7 @@
     height: 21px;
     display: block;
   }
+
+  .movie-rating{
+    display:inline-block
+  }
