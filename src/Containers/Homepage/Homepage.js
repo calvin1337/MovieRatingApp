@@ -2,18 +2,50 @@ import React, { Component } from 'react'
 import {Container, Row} from "react-bootstrap"
 import SearchBar from '../../Components/SearchBar/SearchBar'
 import MovieCard from '../../Components/MovieCard/MovieCard'
-import MovieData from "../../MovieData";
+// import MovieData from "../../MovieData";
 import MovieList from "../../Components/MovieCard/MovieList/MovieList"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTh, faBars} from '@fortawesome/free-solid-svg-icons'
+import axios from "axios"
 
 export class Homepage extends Component {
 
     state = {
         search: "",
         view: "grid",
-        sort: ""
+        sort: "",
+        movies: [],
+        loaded: false
     }
+
+    componentDidMount(){
+        this.loadMovies()
+    }
+
+    loadMovies = () =>{
+        axios.get("https://movieapp-aa3df.firebaseio.com/movies.json")
+        .then(res => {
+            const movies = [];
+            for(let key in res.data){
+                movies.push({
+                    ...res.data[key],
+                    id: key
+                });
+            }
+            this.setState({movies: movies}, () => {
+                this.loaded()
+            })
+            
+
+        })
+
+    }
+            
+        loaded = () => {
+            this.setState({loaded:true})
+        }
+    
+
 
     updateSearch = (e) => {
         this.setState({search: e.target.value})
@@ -33,16 +65,19 @@ export class Homepage extends Component {
       }
 
     render() {
-            let filteredMovie = MovieData.filter(
+            let movie = this.state.movies
+
+            let filteredMovie = movie.filter(
                 (movie) => {
                     return movie.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
                 }
             )
 
-            if(!isNaN(this.state.search)){
-                filteredMovie = MovieData.filter(
+            
+            if(!isNaN(this.state.search) && this.state.loaded === true){
+                filteredMovie = movie.filter(
                     (movie) => {
-                        return movie.release.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+                        return movie.release.indexOf(this.state.search) !== -1;
                     }
                 )
             }
@@ -67,13 +102,13 @@ export class Homepage extends Component {
 
             if(this.state.view === "grid"){
                view = filteredMovie.map(movie => (
-                    <MovieCard title={movie.title} date={movie.release} image={movie.image} rating={movie.rating} tags={movie.tags} />
+                    <MovieCard title={movie.title} date={movie.release} image={movie.image} rating={movie.rating}  />
                 ))
             }
 
             if(this.state.view === "list"){
                 view = filteredMovie.map(movie => (
-                    <MovieList title={movie.title} date={movie.release} image={movie.image} rating={movie.rating} tags={movie.tags} />
+                    <MovieList title={movie.title} date={movie.release} image={movie.image} rating={movie.rating}  />
                 ))
             }
             
@@ -81,8 +116,8 @@ export class Homepage extends Component {
         return (
 
             <Container>
-                <div style={{textAlign:"center", paddingTop:"50px", paddingBottom:"50px"}}>
-                    <h1>Calvin's Movie Ratings</h1>
+                <div  style={{paddingTop:"50px", paddingBottom:"50px", textAlign:"center"}}>
+                    <h1>Calvin's Movie Ratings  </h1> 
                 </div>
                 <SearchBar updateSearch={(e) => this.updateSearch(e)} />
                 <div className="TypeContainer">
@@ -102,7 +137,7 @@ export class Homepage extends Component {
                 <select onChange={(e) => this.sortChange(e)} id="rating-filter">
                     <option value="">Sort</option>
                     <option value="Low rating">Low rating</option>
-                    <option value="High rating">High rating</option>
+                    <option value="High rating">High ratings</option>
                     <option value="A-Z">A-Z</option>
                     <option value="Z-A">Z-A</option>
                 </select>

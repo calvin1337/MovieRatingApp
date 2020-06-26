@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Col } from "react-bootstrap"
 import StarRating from './StarRating/StarRating'
-import MovieTags from './MovieTags/MovieTags'
+// import MovieTags from './MovieTags/MovieTags'
 import "./MovieCard.css";
 
 export class MovieCard extends Component {
@@ -20,11 +20,11 @@ export class MovieCard extends Component {
                         <StarRating rating={this.props.rating}/>
                         <div className="movie-tags">
                         <div className="tagContainer">
-                            {
+                            {/* {
                                 this.props.tags.map(tag => (
                                     <MovieTags name={tag} />
                                 ))
-                            }
+                            } */}
                         </div>
                         </div>
                         
