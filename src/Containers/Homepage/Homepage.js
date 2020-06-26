@@ -10,7 +10,8 @@ export class Homepage extends Component {
 
     state = {
         search: "",
-        view: "grid"
+        view: "grid",
+        sort: ""
     }
 
     updateSearch = (e) => {
@@ -21,6 +22,14 @@ export class Homepage extends Component {
         let view = e
         this.setState({view: view})
     }
+
+    sortChange = (e) => {
+        this.setState({sort: e.target.value})
+    }
+
+     strip = (title) => {
+        return title.replace(/^(a|the|an)\s/i, "");
+      }
 
     render() {
             let filteredMovie = MovieData.filter(
@@ -35,6 +44,22 @@ export class Homepage extends Component {
                         return movie.release.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
                     }
                 )
+            }
+
+            if(this.state.sort === "Low rating"){
+                filteredMovie.sort((a, b) => (a.rating > b.rating ? 1 : -1))
+            }
+
+            if(this.state.sort === "High rating"){
+                filteredMovie.sort((a, b) => (b.rating > a.rating ? 1 : -1))
+            }
+
+            if(this.state.sort === "A-Z"){
+                filteredMovie.sort((a, b) => (this.strip(a.title) > this.strip(b.title) ? 1 : -1))
+            }
+
+            if(this.state.sort === "Z-A"){
+                filteredMovie.sort((a, b) => (this.strip(b.title) > this.strip(a.title) ? 1 : -1))
             }
         
             let view = ""
@@ -57,6 +82,8 @@ export class Homepage extends Component {
                     <h1>Calvin's Movie Ratings</h1>
                 </div>
                 <SearchBar updateSearch={(e) => this.updateSearch(e)} />
+                <div className="TypeContainer">
+                
                 <div className="viewTypeContaner">
 
                     <button className={this.state.view === "grid" ? "active" : null} onClick={(e) => this.changeView("grid")}>
@@ -67,6 +94,19 @@ export class Homepage extends Component {
                     </button>
                     
                 </div>
+                <div className="sortContainer">
+                    <label>
+                <select onChange={(e) => this.sortChange(e)} id="rating-filter">
+                    <option value="">Sort</option>
+                    <option value="Low rating">Low rating</option>
+                    <option value="High rating">High rating</option>
+                    <option value="A-Z">A-Z</option>
+                    <option value="Z-A">Z-A</option>
+                </select>
+                </label>
+                </div>
+                </div>
+                
                 <div className="movieContainer pt-50">
                     <Row>
                         

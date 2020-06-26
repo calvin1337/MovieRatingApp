@@ -37,3 +37,15 @@ nav a {
  nav span svg{
    margin-left:5px;
  }
+
+ @media (max-width: 550px){
+   .logoContainer{
+      display:none;
+   }
+
+   nav ul {
+    padding-left:20px;
+    margin-bottom:0;
+    padding-right:0;
+  }
+ }
