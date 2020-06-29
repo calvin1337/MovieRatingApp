@@ -19,13 +19,7 @@ export class MovieCard extends Component {
                     <div className="movie-info">
                         <StarRating rating={this.props.rating}/>
                         <div className="movie-tags">
-                        <div className="tagContainer">
-                            {/* {
-                                this.props.tags.map(tag => (
-                                    <MovieTags name={tag} />
-                                ))
-                            } */}
-                        </div>
+                       
                         </div>
                         
                     </div>
