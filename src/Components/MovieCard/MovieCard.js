@@ -10,7 +10,7 @@ export class MovieCard extends Component {
             <Col md="6" lg="4" sm="6" xs="12" style={{marginTop:"10px"}}>
                  <div className="movie-card">
                     <div className="movie-header">
-                        <img src={this.props.image} alt="" />
+                        <img onClick={(e) => this.props.onClick(this.props.id)} src={this.props.image} alt="" />
                     </div>
                     <div className="movie-content">
                         <div className="movie-content-header">

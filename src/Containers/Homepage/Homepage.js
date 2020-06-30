@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import {Container, Row} from "react-bootstrap"
 import SearchBar from '../../Components/SearchBar/SearchBar'
 import MovieCard from '../../Components/MovieCard/MovieCard'
-// import MovieData from "../../MovieData";
 import MovieList from "../../Components/MovieCard/MovieList/MovieList"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTh, faBars} from '@fortawesome/free-solid-svg-icons'
 import axios from "axios"
+import MovieModal from '../../Components/MovieCard/MovieModal/MovieModal'
 
 export class Homepage extends Component {
 
@@ -15,7 +15,9 @@ export class Homepage extends Component {
         view: "grid",
         sort: "",
         movies: [],
-        loaded: false
+        loaded: false,
+        showModal: false,
+        modal: ""
     }
 
     componentDidMount(){
@@ -64,6 +66,32 @@ export class Homepage extends Component {
         return title.replace(/^(a|the|an)\s/i, "");
       }
 
+      MovieInfo = (e) => {
+          console.log(e)
+        
+          let movie = this.state.movies
+
+          movie.map(movie => {
+            if(e === movie.id){
+              return(
+                this.setState({modal: movie}, () => {
+                    this.setState({showModal: true})
+                })
+              ) 
+
+            }
+
+        })
+
+      }
+
+      toggleModal = (e) => {
+        if(e.target.className === "movie-modal"){
+            this.setState({showModal : !this.state.showModal})
+             
+         }
+      }
+
     render() {
             let movie = this.state.movies
 
@@ -102,7 +130,7 @@ export class Homepage extends Component {
 
             if(this.state.view === "grid"){
                view = filteredMovie.map(movie => (
-                    <MovieCard title={movie.title} date={movie.release} image={movie.image} rating={movie.rating}  />
+                    <MovieCard onClick={(e) => this.MovieInfo(e)} id={movie.id} title={movie.title} date={movie.release} image={movie.image} rating={movie.rating}  />
                 ))
             }
 
@@ -114,7 +142,7 @@ export class Homepage extends Component {
             
 
         return (
-
+           
             <Container>
                 <div  style={{paddingTop:"50px", paddingBottom:"50px", textAlign:"center"}}>
                     <h1>Calvin's Movie Ratings  </h1> 
@@ -152,7 +180,10 @@ export class Homepage extends Component {
 
                     </Row>
                 </div>
+                <MovieModal toggleModal={(e) => this.toggleModal(e)} movie={this.state.modal} show={this.state.showModal}/>
             </Container>
+            
+            
         )
     }
 }

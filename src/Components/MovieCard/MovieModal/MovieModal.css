@@ -1,0 +1,26 @@
+.movie-modal{
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom:0;
+    display:none;
+}
+
+
+.modal-box{
+    background-color: #d3d3d3;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    width:400px;
+    height:400px;
+    padding: 50px;
+    
+}
