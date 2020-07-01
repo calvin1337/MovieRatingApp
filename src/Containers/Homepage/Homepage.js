@@ -71,6 +71,7 @@ export class Homepage extends Component {
         
           let movie = this.state.movies
 
+          // eslint-disable-next-line array-callback-return
           movie.map(movie => {
             if(e === movie.id){
               return(
