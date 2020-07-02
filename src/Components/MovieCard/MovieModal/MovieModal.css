@@ -104,7 +104,7 @@
 
 }
 
-@media (max-width: 767px) {
+@media (max-width: 766px) {
     .modal-box{
         width:350px;
         height:auto;
@@ -117,21 +117,31 @@
     }
 
     .MovieModalInfo p {
-        height:auto;
+       
         font-size:16px;
+        padding-bottom:10px;
     }
     
-    
+    .modalRating{
+        position: relative;
+    }
+    .modalRating h5{
+        width:auto;
+    }
 }
 
 @media (min-width: 767px ) and (max-width: 965px){
     .modal-box{
         width:600px;
-        height:80vh;
+        height:auto;
     }
 
     .MovieModalInfo p {
         height:300px;
         font-size:14px;
+    }
+
+    .modalRating h5{
+        width:239.5px;;
     }
 }
