@@ -69,6 +69,11 @@ display:flex;
     border-bottom: 1px solid rgba(46,52,78,.3);
   }
 
-  .movie-card img:hover{
+  .movie-header img:hover{
     cursor: pointer;
   }
+
+  .movieList {
+    cursor: pointer;
+  }
+ 

@@ -47,7 +47,7 @@
 
 
 .MovieModalInfo h1 {
-    font-size: 40px;
+    
     letter-spacing: 2px;
     margin-bottom: 12px;
     text-align: center;
@@ -63,7 +63,7 @@
 .MovieModalInfo p {
     border-bottom: 2px solid #000;
     padding-bottom: 10px;
-    height:350px;
+    height:300px;
 }
 
 .modal-box button, input[type="submit"] {
@@ -88,7 +88,7 @@
 @media (max-width: 767px) {
     .modal-box{
         width:350px;
-        height:80vh;
+        height:auto;
         grid-template-columns: 1fr;
         grid-template-areas: "MovieModalInfo";
     }
@@ -98,11 +98,21 @@
     }
 
     .MovieModalInfo p {
-        height:300px;
+        height:auto;
         font-size:16px;
     }
     
-    .MovieModalInfo {
+    
+}
+
+@media (min-width: 767px ) and (max-width: 965px){
+    .modal-box{
+        width:600px;
         height:80vh;
+    }
+
+    .MovieModalInfo p {
+        height:300px;
+        font-size:14px;
     }
 }
