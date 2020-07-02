@@ -88,6 +88,7 @@
 @media (max-width: 767px) {
     .modal-box{
         width:350px;
+        height:80vh;
         grid-template-columns: 1fr;
         grid-template-areas: "MovieModalInfo";
     }
@@ -96,5 +97,12 @@
         display:none;
     }
 
+    .MovieModalInfo p {
+        height:300px;
+        font-size:16px;
+    }
     
+    .MovieModalInfo {
+        height:80vh;
+    }
 }
