@@ -83,16 +83,24 @@ export class Homepage extends Component {
             }
 
         })
-
+        document.documentElement.style.overflow = 'hidden';
+        document.body.scroll = "no";
       }
 
       toggleModal = (e) => {
         if(e.target.className === "movie-modal"){
             this.setState({showModal : !this.state.showModal})
-             
+            document.documentElement.style.overflow = 'scroll';
+            document.body.scroll = "yes";
          }
+
       }
 
+      closeBtn = () => {
+        this.setState({showModal : !this.state.showModal})
+        document.documentElement.style.overflow = 'scroll';
+        document.body.scroll = "yes";
+      }
     render() {
             let movie = this.state.movies
 
@@ -181,7 +189,7 @@ export class Homepage extends Component {
 
                     </Row>
                 </div>
-                <MovieModal toggleModal={(e) => this.toggleModal(e)} movie={this.state.modal} show={this.state.showModal}/>
+                <MovieModal closeBtn={() => this.closeBtn()} toggleModal={(e) => this.toggleModal(e)} movie={this.state.modal} show={this.state.showModal}/>
             </Container>
             
             

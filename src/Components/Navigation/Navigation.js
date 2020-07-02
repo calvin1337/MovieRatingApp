@@ -26,7 +26,7 @@ export class Navigation extends Component {
                         / 
                     </li>
                     <li>
-                        <Link to="/contact">Contact</Link>
+                        <Link to="/contact">Reviews</Link>
                     </li>
                    
                 </ul>

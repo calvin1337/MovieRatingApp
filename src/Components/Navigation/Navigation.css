@@ -32,6 +32,7 @@ nav a {
    display:flex;
    padding-left:20px;
    align-items: center;
+   color: #a4acc4;
  }
 
  nav span svg{

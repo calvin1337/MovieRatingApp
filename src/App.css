@@ -6,6 +6,8 @@
     margin:0;
 }
 
+
+
 ol, ul {
 	list-style: none;
 }
@@ -30,7 +32,7 @@ body{
     font-size: 18px ;
     line-height: 1.8rem ;
     font-family: "Nunito", sans-serif ;
-    color:#a4acc4 ;
+    color:#555 ;
     font-weight: 400 ;
 }
 
