@@ -16,12 +16,18 @@ export class MovieModal extends Component {
         let movieTitle = ""
         let movieRelease = ""
         let rating = ""
+        let imbd = ""
+        let runtime = ""
+        let disc = ""
 
         if(this.props.movie !== ""){
             movieImage = this.props.movie.image
             movieTitle = this.props.movie.title
             movieRelease = this.props.movie.release
             rating = (this.props.movie.rating / 10 )
+            imbd = (this.props.movie.imbd / 10 )
+            runtime = this.props.movie.runtime
+            disc = this.props.movie.disc
         }
 
        
@@ -34,10 +40,15 @@ export class MovieModal extends Component {
                     <button className="closeBtn" id="close">
                      <FontAwesomeIcon onClick={() => this.props.closeBtn()}  icon={faTimes} size="1x"/> </button>
                     <h1>{movieTitle}</h1>
-                    <h6>{movieRelease} | 1h 23m</h6>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos nesciunt et aliquam quaerat nisi minima similique voluptas, pariatur tempore fugiat repellendus saepe provident iusto quam deleniti esse repudiandae voluptates exercitationem natus! Totam ipsam et illo dolore nemo officia dicta blanditiis?</p>
-                    <h5>IMBD Rating: </h5>
-                             <h5>My Rating: {rating} / 10</h5>
+                            <h6>{movieRelease} <strong>|</strong> {runtime}</h6>
+                            <p>{disc}</p>
+                            <div className="modalRating">
+                            <h5><strong>My Rating: </strong>{rating} / 10</h5>
+                            <h5><strong>IMBD Rating: </strong>{imbd} / 10 </h5> 
+                            </div>
+                            
+                            
+                            
                     </div>
                     </div>
                     
