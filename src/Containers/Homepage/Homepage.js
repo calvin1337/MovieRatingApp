@@ -4,9 +4,12 @@ import SearchBar from '../../Components/SearchBar/SearchBar'
 import MovieCard from '../../Components/MovieCard/MovieCard'
 import MovieList from "../../Components/MovieCard/MovieList/MovieList"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTh, faBars} from '@fortawesome/free-solid-svg-icons'
+import { faTh, faBars, faFilm} from '@fortawesome/free-solid-svg-icons'
 import axios from "axios"
-import MovieModal from '../../Components/MovieCard/MovieModal/MovieModal'
+import MovieModal from '../../Components/MovieCard/MovieModal/MovieModal';
+
+
+
 
 export class Homepage extends Component {
 
@@ -154,7 +157,7 @@ export class Homepage extends Component {
            
             <Container>
                 <div  style={{paddingTop:"50px", paddingBottom:"50px", textAlign:"center"}}>
-                    <h1>Calvin's Movie Ratings  </h1> 
+                    <h1>Calvin's Movie Ratings <FontAwesomeIcon icon={faFilm} />  </h1> 
                 </div>
                 <SearchBar updateSearch={(e) => this.updateSearch(e)} />
                 <div className="TypeContainer">

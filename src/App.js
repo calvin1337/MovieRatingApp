@@ -2,8 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css"
 import Navigation from './Components/Navigation/Navigation';
-import Homepage from "./Containers/Homepage/Homepage"; 
-
+import Homepage from "./Containers/Homepage/Homepage"
+import About from "./Containers/About/About"
 import { BrowserRouter as Router , Route, Switch} from 'react-router-dom'
 
 
@@ -16,6 +16,12 @@ function App() {
       <Route path="/" exact render={props => (
         
         <Homepage />
+        
+      
+       )} />
+       <Route path="/about" exact render={props => (
+        
+        <About />
         
       
        )} />
