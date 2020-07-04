@@ -137,7 +137,15 @@ export class Homepage extends Component {
             if(this.state.sort === "Z-A"){
                 filteredMovie.sort((a, b) => (this.strip(b.title) > this.strip(a.title) ? 1 : -1))
             }
-        
+            
+            if(this.state.sort === "release-date-old"){
+                filteredMovie.sort((a, b) => (a.release > b.release ? 1 : -1))
+            }
+
+            if(this.state.sort === "release-date-new"){
+                filteredMovie.sort((a, b) => (b.release > a.release ? 1 : -1))
+            }
+
             let view = ""
 
             if(this.state.view === "grid"){
@@ -175,11 +183,12 @@ export class Homepage extends Component {
                 <div className="sortContainer">
                     <label>
                 <select onChange={(e) => this.sortChange(e)} id="rating-filter">
-                    <option value="">Sort</option>
-                    <option value="Low rating">Low rating</option>
-                    <option value="High rating">High ratings</option>
                     <option value="A-Z">A-Z</option>
                     <option value="Z-A">Z-A</option>
+                    <option value="Low rating">Lowest rating</option>
+                    <option value="High rating">Highest rating</option>
+                    <option value="release-date-new">Release date {"(new - old)"}</option>
+                    <option value="release-date-old">Release date {"(old - new)"}</option>                
                 </select>
                 </label>
                 </div>

@@ -28,6 +28,12 @@ export class Navigation extends Component {
                     <li>
                         <Link to="/Reviews">Reviews</Link>
                     </li>
+                    <li>
+                        /
+                    </li>
+                     <li>
+                        <Link to="/watchlist">Watch List</Link>
+                    </li>
                    
                 </ul>
             </nav>
