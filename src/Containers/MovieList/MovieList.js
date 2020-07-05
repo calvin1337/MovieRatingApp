@@ -27,6 +27,8 @@ export class MovieList extends Component {
             })
     }
 
+    
+
     render() {
 
         let movie = this.state.movies
@@ -39,7 +41,7 @@ export class MovieList extends Component {
         let view = ""
 
         view = filteredMovie.map(movie => (
-                    <MovieCard title={movie.title} image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
+                    <MovieCard key={movie.id} watchList={(e) => this.props.watchList(e)} id={movie.id} title={movie.title} date={movie.release_date} image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
                 ))
         return (
             <Container>

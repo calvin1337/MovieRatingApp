@@ -70,7 +70,7 @@ export class Homepage extends Component {
       }
 
       MovieInfo = (e) => {
-          console.log(e)
+         
         
           let movie = this.state.movies
 
@@ -150,13 +150,13 @@ export class Homepage extends Component {
 
             if(this.state.view === "grid"){
                view = filteredMovie.map(movie => (
-                    <MovieCard onClick={(e) => this.MovieInfo(e)} id={movie.id} title={movie.title} date={movie.release} image={movie.image} rating={movie.rating}  />
+                    <MovieCard type="rating" key={movie.id}  onClick={(e) => this.MovieInfo(e)} id={movie.id} title={movie.title} date={movie.release} image={movie.image} rating={movie.rating}  />
                 ))
             }
 
             if(this.state.view === "list"){
                 view = filteredMovie.map(movie => (
-                    <MovieList onClick={(e) => this.MovieInfo(e)} id={movie.id} title={movie.title} date={movie.release} image={movie.image} rating={movie.rating}  />
+                    <MovieList type="rating" key={movie.id}  onClick={(e) => this.MovieInfo(e)} id={movie.id} title={movie.title} date={movie.release} image={movie.image} rating={movie.rating}  />
                 ))
             }
             
