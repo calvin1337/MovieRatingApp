@@ -5,6 +5,8 @@ import Navigation from './Components/Navigation/Navigation';
 import Homepage from "./Containers/Homepage/Homepage"
 import About from "./Containers/About/About"
 import { BrowserRouter as Router , Route, Switch} from 'react-router-dom'
+import MovieList from './Containers/MovieList/MovieList';
+
 
 
 function App() {
@@ -22,6 +24,12 @@ function App() {
        <Route path="/about" exact render={props => (
         
         <About />
+        
+      
+       )} />
+      <Route path="/watchlist" exact render={props => (
+        
+        <MovieList />
         
       
        )} />

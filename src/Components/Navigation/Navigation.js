@@ -32,6 +32,12 @@ export class Navigation extends Component {
                         /
                     </li>
                      <li>
+                        <Link to="/movielist">Movie List</Link>
+                    </li>
+                    <li>
+                        /
+                    </li>
+                     <li>
                         <Link to="/watchlist">Watch List</Link>
                     </li>
                    
