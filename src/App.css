@@ -97,3 +97,15 @@ header p {
         font-size:1.5rem;
     }
   }
+
+  .page-link{
+      color:#6c757d !important;
+  }
+  .page-item.active{
+      background:none !important;
+  }
+  .active .page-link{
+    background:#6c757d !important;
+    color:white !important;
+    border:none;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios";
 import {Container, Row} from "react-bootstrap"
+import Pagination from 'react-bootstrap/Pagination'
 import MovieCard from "../../Components/MovieCard/MovieCard"
 
 export class MovieList extends Component {
@@ -55,6 +56,23 @@ export class MovieList extends Component {
 
                     </Row>
                 </div>
+                <div style={{paddingTop:"50px", paddingBottom:"50px"}}>
+                <Pagination className="justify-content-center">
+                    <Pagination.First />
+                    <Pagination.Prev />
+                    <Pagination.Item active>{1}</Pagination.Item>
+
+
+                    <Pagination.Item>{2}</Pagination.Item>
+                    <Pagination.Item>{3}</Pagination.Item>
+                    <Pagination.Item >{4}</Pagination.Item>
+                    <Pagination.Item>{5}</Pagination.Item>
+                    <Pagination.Item>{20}</Pagination.Item>
+                    <Pagination.Next />
+                    <Pagination.Last />
+                </Pagination>
+                </div>
+                
             </Container>
         )
     }
