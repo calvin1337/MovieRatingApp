@@ -14,6 +14,7 @@ import MovieModal from '../../Components/MovieCard/MovieModal/MovieModal';
 export class Homepage extends Component {
 
     state = {
+        mounted: false,
         search: "",
         view: "grid",
         sort: "",
@@ -24,11 +25,19 @@ export class Homepage extends Component {
     }
 
     componentDidMount(){
-        this.loadMovies()
+        this.setState({mounted: true}, () => {
+            this.loadMovies()
+        })
+        
+    }
+
+    componentWillUnmount(){
+        this.setState({mounted:false})
     }
 
     loadMovies = () =>{
-        axios.get("https://movieapp-aa3df.firebaseio.com/movies.json")
+        if(this.state.mounted){
+            axios.get("https://movieapp-aa3df.firebaseio.com/movies.json")
         .then(res => {
             const movies = [];
             for(let key in res.data){
@@ -43,6 +52,8 @@ export class Homepage extends Component {
             
 
         })
+        }
+        
 
     }
             
