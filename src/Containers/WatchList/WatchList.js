@@ -28,30 +28,39 @@ export class WatchList extends Component {
         for(var i = 0; i < this.state.watchList.length; i++){
             axios.get(`https://api.themoviedb.org/3/movie/${this.state.watchList[i]}?api_key=${API_KEY}&language=en-US`)
             .then(res => {
-                movies.push(res.data)
+                movies.push({...res.data})
+                this.setState({movies: movies})
+               
                 })
         }
-        this.setState({movies: movies}, () => {
+       
+            console.log(movies)
+            console.log(this.state.movies)
+            console.log(this.props.watchList)
             this.loaded()
-        })
+        
         }
         
     }
 
     loaded = () => {
         this.setState({loaded:true})
+        
     }
     render() {
 
         let movie = this.state.movies
+
+        let filteredMovie = movie.filter(
+            (movie) => {
+                return movie.title.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+            }
+        )
         let view = ""
-        if(this.props.watchList.length > 0 && this.state.loaded){
-            movie.map(movie => {
-            return <h1>{movie.title}</h1>
-            })
-        } else view = <h1>No Data yet</h1>
-        
-    
+
+        view = filteredMovie.map(movie => (
+                <h1>Hello</h1>
+            ))
         
 
         return (
