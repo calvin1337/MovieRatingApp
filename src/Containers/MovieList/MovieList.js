@@ -28,7 +28,14 @@ export class MovieList extends Component {
             })
     }
 
-    
+    pageChange = (e) => {
+            let number = ""
+            number = e
+            this.setState({page: number}, () => {
+                this.getMovies()
+            })
+
+    }
 
     render() {
 
@@ -44,6 +51,27 @@ export class MovieList extends Component {
         view = filteredMovie.map(movie => (
                     <MovieCard key={movie.id} watchList={(e) => this.props.watchList(e)} id={movie.id} title={movie.title} date={movie.release_date} image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
                 ))
+        
+                let currentPage = this.state.page - 1
+                let lastPage = ""
+
+                lastPage = this.state.page + 18
+
+                if(this.state.page < 1) {
+                    currentPage = 1
+                }
+
+                if(this.state.page > 496){
+                    currentPage = 495
+                    
+                }
+                
+                if(this.state.page > 481){
+                    lastPage = 500
+                    
+                }
+                
+
         return (
             <Container>
             <div  style={{paddingTop:"50px", paddingBottom:"50px", textAlign:"center"}}>
@@ -58,18 +86,18 @@ export class MovieList extends Component {
                 </div>
                 <div style={{paddingTop:"50px", paddingBottom:"50px"}}>
                 <Pagination className="justify-content-center">
-                    <Pagination.First />
-                    <Pagination.Prev />
-                    <Pagination.Item active>{1}</Pagination.Item>
+                    <Pagination.First onClick={(e) => this.pageChange(1)} />
+                    <Pagination.Prev onClick={(e) => this.pageChange((currentPage - 1))}/>
+                    <Pagination.Item className={this.state.page === 0 ? "active" : null}onClick={(e) => this.pageChange(Number(e.target.innerText) - 1)}>{currentPage}</Pagination.Item>
 
 
-                    <Pagination.Item>{2}</Pagination.Item>
-                    <Pagination.Item>{3}</Pagination.Item>
-                    <Pagination.Item >{4}</Pagination.Item>
-                    <Pagination.Item>{5}</Pagination.Item>
-                    <Pagination.Item>{20}</Pagination.Item>
-                    <Pagination.Next />
-                    <Pagination.Last />
+                    <Pagination.Item className={this.state.page === (currentPage + 1) ? "active" : null}onClick={(e) => this.pageChange(Number(e.target.innerText) )}>{(currentPage + 1)}</Pagination.Item>
+                    <Pagination.Item className={this.state.page === (currentPage + 2) ? "active" : null}onClick={(e) => this.pageChange(Number(e.target.innerText) )}>{(currentPage + 2)}</Pagination.Item>
+                    <Pagination.Item className={this.state.page === (currentPage + 3) ? "active" : null}onClick={(e) => this.pageChange(Number(e.target.innerText) )}>{(currentPage + 3)}</Pagination.Item>
+                    <Pagination.Item className={this.state.page === (currentPage + 4) ? "active" : null}onClick={(e) => this.pageChange(Number(e.target.innerText) )}>{(currentPage + 4)}</Pagination.Item>
+        <Pagination.Item className={this.state.page === (currentPage + 19) || lastPage === this.state.page ? "active" : null}onClick={(e) => this.pageChange(Number(e.target.innerText))}>{lastPage}</Pagination.Item>
+                    <Pagination.Next onClick={(e) => this.pageChange((currentPage + 1))} />
+                    <Pagination.Last onClick={(e) => this.pageChange(500)} />
                 </Pagination>
                 </div>
                 
