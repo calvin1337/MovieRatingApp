@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilm } from '@fortawesome/free-solid-svg-icons'
-import {Row} from "react-bootstrap"
+import {Row, Container} from "react-bootstrap"
+import MovieCard from "../../Components/MovieCard/MovieCard"
+import MovieModal from '../../Components/MovieCard/MovieModal/MovieModal';
+
 
 
 import axios from "axios"
@@ -12,7 +15,9 @@ export class WatchList extends Component {
         movies: [],
         watchList: this.props.watchList,
         loaded: false,
-        search: ""
+        search: "",
+        showModal: false,
+        modal: ""
     }
 
    componentDidMount() {
@@ -43,6 +48,42 @@ export class WatchList extends Component {
         
     }
 
+    MovieInfo = (e) => {
+         
+        
+        let movie = this.state.movies
+
+        // eslint-disable-next-line array-callback-return
+        movie.map(movie => {
+          if(e === movie.id){
+            return(
+              this.setState({modal: movie}, () => {
+                  this.setState({showModal: true})
+              })
+            ) 
+
+          }
+
+      })
+      document.documentElement.style.overflow = 'hidden';
+      document.body.scroll = "no";
+    }
+
+    toggleModal = (e) => {
+      if(e.target.className === "movie-modal"){
+          this.setState({showModal : !this.state.showModal})
+          document.documentElement.style.overflow = 'scroll';
+          document.body.scroll = "yes";
+       }
+
+    }
+
+    closeBtn = () => {
+      this.setState({showModal : !this.state.showModal})
+      document.documentElement.style.overflow = 'scroll';
+      document.body.scroll = "yes";
+    }
+
     loaded = () => {
         this.setState({loaded:true})
         
@@ -59,16 +100,19 @@ export class WatchList extends Component {
         let view = ""
 
         view = filteredMovie.map(movie => (
-                <h1>Hello</h1>
+            <MovieCard onClick={(e) => this.MovieInfo(e)} type="watch" key={movie.id} rating={(movie.vote_average * 10)} id={movie.id} title={movie.title} date={movie.release_date} image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
+
             ))
         
 
         return (
             <React.Fragment>
+            
             <header  style={{paddingTop:"50px", paddingBottom:"50px", textAlign:"center"}}>
             <h1>Calvin's Movie Ratings <FontAwesomeIcon icon={faFilm} />  </h1> 
             <p>These are some movies I plan on watching soon!</p>
             </header>
+            <Container>
             <div className="movieContainer pt-50">
                     <Row>
                         
@@ -76,6 +120,8 @@ export class WatchList extends Component {
 
                     </Row>
                 </div>
+            </Container>
+            <MovieModal tmbd="true" closeBtn={() => this.closeBtn()} toggleModal={(e) => this.toggleModal(e)} movie={this.state.modal} show={this.state.showModal}/>
             </React.Fragment>
         )
     }

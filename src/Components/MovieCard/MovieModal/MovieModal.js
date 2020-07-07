@@ -30,6 +30,16 @@ export class MovieModal extends Component {
             disc = this.props.movie.disc
         }
 
+        if(this.props.tmbd === "true"){
+            movieImage = `https://image.tmdb.org/t/p/w500/${this.props.movie.poster_path}`
+            movieTitle = this.props.movie.title
+            rating = "N/A"
+            movieRelease = this.props.movie.release_date
+            imbd = this.props.movie.vote_average
+            runtime = `${this.props.movie.runtime} mins`
+            disc = this.props.movie.overview
+        }
+
        
 
         return (

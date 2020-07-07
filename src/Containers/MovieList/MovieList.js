@@ -3,6 +3,8 @@ import axios from "axios";
 import {Container, Row} from "react-bootstrap"
 import Pagination from 'react-bootstrap/Pagination'
 import MovieCard from "../../Components/MovieCard/MovieCard"
+import MovieModal from '../../Components/MovieCard/MovieModal/MovieModal';
+
 
 export class MovieList extends Component {
 
@@ -10,6 +12,8 @@ export class MovieList extends Component {
         page: 1,
         movies: [],
         search: "",
+        showModal: false,
+        modal: ""
         
     }
 
@@ -37,6 +41,43 @@ export class MovieList extends Component {
 
     }
 
+    MovieInfo = (e) => {
+         
+        
+        let movie = this.state.movies
+
+        // eslint-disable-next-line array-callback-return
+        movie.map(movie => {
+          if(e === movie.id){
+            return(
+              this.setState({modal: movie}, () => {
+                  this.setState({showModal: true})
+              })
+            ) 
+
+          }
+
+      })
+      document.documentElement.style.overflow = 'hidden';
+      document.body.scroll = "no";
+    }
+
+    toggleModal = (e) => {
+      if(e.target.className === "movie-modal"){
+          this.setState({showModal : !this.state.showModal})
+          document.documentElement.style.overflow = 'scroll';
+          document.body.scroll = "yes";
+       }
+
+    }
+
+    closeBtn = () => {
+      this.setState({showModal : !this.state.showModal})
+      document.documentElement.style.overflow = 'scroll';
+      document.body.scroll = "yes";
+    }
+
+
     render() {
 
         let movie = this.state.movies
@@ -49,7 +90,7 @@ export class MovieList extends Component {
         let view = ""
 
         view = filteredMovie.map(movie => (
-                    <MovieCard key={movie.id} watchList={(e) => this.props.watchList(e)} id={movie.id} title={movie.title} date={movie.release_date} image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
+            <MovieCard type="watchList" watchList={(e) => this.props.watchList(e)} runtime={movie.runtime} onClick={(e) => this.MovieInfo(e)} key={movie.id} rating={(movie.vote_average * 10)} id={movie.id} title={movie.title} date={movie.release_date} image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
                 ))
         
                 let currentPage = this.state.page - 1
@@ -73,6 +114,7 @@ export class MovieList extends Component {
                 
 
         return (
+            <React.Fragment>
             <Container>
             <div  style={{paddingTop:"50px", paddingBottom:"50px", textAlign:"center"}}>
                     <h1>Movie List</h1> 
@@ -102,6 +144,8 @@ export class MovieList extends Component {
                 </div>
                 
             </Container>
+            <MovieModal tmbd="true" closeBtn={() => this.closeBtn()} toggleModal={(e) => this.toggleModal(e)} movie={this.state.modal} show={this.state.showModal}/>
+            </React.Fragment>
         )
     }
 }
