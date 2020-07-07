@@ -50,7 +50,7 @@ export class WatchList extends Component {
                
                 })
         }
-       
+        
             
         
         }
@@ -120,6 +120,9 @@ export class WatchList extends Component {
 
             ))
         
+            if(this.state.movies.length === 0){
+                view = <div style={{margin:"auto"}}><h1 style={{textAlign:"center"}}>No data!</h1> <h1>Add movies from the movie list</h1></div>  
+            }
 
         return (
             <React.Fragment>
