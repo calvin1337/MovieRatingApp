@@ -25,9 +25,14 @@ export class WatchList extends Component {
     }
 
     componentDidUpdate(){
-        if(this.state.watchList.length < this.state.movies.length){
+        if(this.state.watchList.length < this.state.movies.length ){
             this.loadWatchList()
         }
+
+        if(this.state.watchList.length === 0 && this.state.movies.length === 1){
+            this.loadWatchList()
+        }
+
        console.log(this.state.watchList.length, this.state.movies.length)
     }
 
@@ -50,6 +55,10 @@ export class WatchList extends Component {
         
         }
         
+        if(this.props.watchList.length === 0){
+            let movies = []
+            this.setState({movies: movies})
+        }
     }
 
     MovieInfo = (e) => {
