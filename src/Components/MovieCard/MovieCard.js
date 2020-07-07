@@ -16,6 +16,7 @@ export class MovieCard extends Component {
             <div style={{display:"flex", flexDirection:"column"}}>
                 <StarRating  rating={this.props.rating}/>
                 <button style={{marginTop:"10px"}} className="btn btn-secondary">Watched</button>
+                <button onClick={(e) => this.props.remove(this.props.id)} style={{marginTop:"10px"}} className="btn btn-danger">Remove</button>
             </div>
                 
             )

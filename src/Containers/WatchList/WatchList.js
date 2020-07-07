@@ -14,7 +14,7 @@ export class WatchList extends Component {
     state = {
         movies: [],
         watchList: this.props.watchList,
-        loaded: false,
+        
         search: "",
         showModal: false,
         modal: ""
@@ -24,7 +24,14 @@ export class WatchList extends Component {
         this.loadWatchList()
     }
 
-    
+    componentDidUpdate(){
+        if(this.state.watchList.length < this.state.movies.length){
+            this.loadWatchList()
+        }
+       console.log(this.state.watchList.length, this.state.movies.length)
+    }
+
+   
 
     loadWatchList = () => {
         if(this.props.watchList.length > 0){
@@ -39,10 +46,7 @@ export class WatchList extends Component {
                 })
         }
        
-            console.log(movies)
-            console.log(this.state.movies)
-            console.log(this.props.watchList)
-            this.loaded()
+            
         
         }
         
@@ -88,8 +92,11 @@ export class WatchList extends Component {
         this.setState({loaded:true})
         
     }
-    render() {
 
+    
+
+    render() {
+        
         let movie = this.state.movies
 
         let filteredMovie = movie.filter(
@@ -100,7 +107,7 @@ export class WatchList extends Component {
         let view = ""
 
         view = filteredMovie.map(movie => (
-            <MovieCard onClick={(e) => this.MovieInfo(e)} type="watch" key={movie.id} rating={(movie.vote_average * 10)} id={movie.id} title={movie.title} date={movie.release_date} image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
+            <MovieCard onClick={(e) => this.MovieInfo(e)} type="watch" remove={(e) => this.props.remove(e)} key={movie.id} rating={(movie.vote_average * 10)} id={movie.id} title={movie.title} date={movie.release_date} image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
 
             ))
         

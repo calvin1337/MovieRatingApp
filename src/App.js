@@ -20,6 +20,16 @@ class App extends Component{
         this.state.watchlist.push(e)
     }
 
+    removeMovie = (id) => {
+      let newArr = this.state.watchlist
+      for (var i = newArr.length - 1; i >= 0; --i) {
+        if (newArr[i] === id) {
+            newArr.splice(i,1);
+            this.setState({watchlist: newArr})
+        }
+    }
+  }
+
   render(){
     return (
       <div>
@@ -47,7 +57,7 @@ class App extends Component{
 
         <Route path="/watchlist" exact render={props => (
           
-          <WatchList watchList={this.state.watchlist} />
+          <WatchList remove={(e) => this.removeMovie(e)} watchList={this.state.watchlist} />
           
         
          )} />
