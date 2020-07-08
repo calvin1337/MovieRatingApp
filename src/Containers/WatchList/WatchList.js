@@ -4,7 +4,7 @@ import { faFilm } from '@fortawesome/free-solid-svg-icons'
 import {Row, Container} from "react-bootstrap"
 import MovieCard from "../../Components/MovieCard/MovieCard"
 import MovieModal from '../../Components/MovieCard/MovieModal/MovieModal';
-
+import WatchedModal from "../../Components/MovieCard/WatchedModal/WatchedModal"
 
 
 import axios from "axios"
@@ -17,7 +17,9 @@ export class WatchList extends Component {
         
         search: "",
         showModal: false,
-        modal: ""
+        modal: "",
+        showForm: false,
+        formToggle: false,
     }
 
    componentDidMount() {
@@ -89,6 +91,12 @@ export class WatchList extends Component {
           document.body.scroll = "yes";
        }
 
+       if(e.target.className === "watched-modal"){
+        this.setState({showForm : !this.state.showForm})
+        document.documentElement.style.overflow = 'scroll';
+        document.body.scroll = "yes";
+     }
+
     }
 
     closeBtn = () => {
@@ -102,6 +110,9 @@ export class WatchList extends Component {
         
     }
 
+    toggleForm = (e) => {
+        this.setState({showForm: true})
+    }
     
 
     render() {
@@ -116,7 +127,16 @@ export class WatchList extends Component {
         let view = ""
 
         view = filteredMovie.map(movie => (
-            <MovieCard onClick={(e) => this.MovieInfo(e)} type="watch" remove={(e) => this.props.remove(e)} key={movie.id} rating={(movie.vote_average * 10)} id={movie.id} title={movie.title} date={movie.release_date} image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
+            <MovieCard 
+            onClick={(e) => this.MovieInfo(e)} 
+            type="watch" 
+            watched={(e) => this.toggleForm(e)} 
+            remove={(e) => this.props.remove(e)} key={movie.id} 
+            rating={(movie.vote_average * 10)} 
+            id={movie.id} 
+            title={movie.title} date={movie.release_date} 
+            image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} 
+            />
 
             ))
         
@@ -141,6 +161,7 @@ export class WatchList extends Component {
                 </div>
             </Container>
             <MovieModal tmbd="true" closeBtn={() => this.closeBtn()} toggleModal={(e) => this.toggleModal(e)} movie={this.state.modal} show={this.state.showModal}/>
+            <WatchedModal toggleModal={(e) => this.toggleModal(e)} showForm={this.state.showForm} />
             </React.Fragment>
         )
     }

@@ -29,7 +29,9 @@ class App extends Component{
         }
     }
   }
-
+  watched = (id, rating) => {
+    console.log(id, rating)
+  }
   render(){
     return (
       <div>
@@ -57,7 +59,7 @@ class App extends Component{
 
         <Route path="/watchlist" exact render={props => (
           
-          <WatchList remove={(e) => this.removeMovie(e)} watchList={this.state.watchlist} />
+          <WatchList watched={(x, i) => this.watched(x, i)} remove={(e) => this.removeMovie(e)} watchList={this.state.watchlist} />
           
         
          )} />
