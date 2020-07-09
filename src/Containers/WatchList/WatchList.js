@@ -97,6 +97,11 @@ export class WatchList extends Component {
         document.body.scroll = "yes";
      }
 
+     
+
+    }
+    submitRating = (rating, id) => {
+        this.setState({showForm : !this.state.showForm})
     }
 
     closeBtn = () => {
@@ -161,7 +166,7 @@ export class WatchList extends Component {
                 </div>
             </Container>
             <MovieModal tmbd="true" closeBtn={() => this.closeBtn()} toggleModal={(e) => this.toggleModal(e)} movie={this.state.modal} show={this.state.showModal}/>
-            <WatchedModal toggleModal={(e) => this.toggleModal(e)} showForm={this.state.showForm} />
+            <WatchedModal submitForm={this.submitRating} toggleModal={(e) => this.toggleModal(e)} showForm={this.state.showForm} />
             </React.Fragment>
         )
     }
