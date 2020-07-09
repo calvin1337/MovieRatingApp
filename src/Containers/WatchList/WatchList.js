@@ -19,7 +19,7 @@ export class WatchList extends Component {
         showModal: false,
         modal: "",
         showForm: false,
-        formToggle: false,
+        form: "",
     }
 
    componentDidMount() {
@@ -101,7 +101,36 @@ export class WatchList extends Component {
 
     }
     submitRating = (rating, id) => {
-        this.setState({showForm : !this.state.showForm})
+        
+        let data = {
+
+        }
+
+        let movie = this.state.movies
+
+        // eslint-disable-next-line array-callback-return
+        movie.map(movie => {
+          if(id === movie.id){
+            return(
+              data = {
+                  title: movie.title,
+                  release: movie.release_date,
+                  image: `https://image.tmdb.org/t/p/w500/${movie.poster_path}`,
+                  id: id,
+                  rating: (rating * 10),
+                  imbd: (movie.vote_average * 10),
+                  disc: movie.overview
+              }
+            ) 
+
+          }
+
+      })
+        axios.post("https://movieapp-aa3df.firebaseio.com/movies.json", data)
+        .then( response => {
+            this.setState({showForm : !this.state.showForm})
+            
+        });
     }
 
     closeBtn = () => {
@@ -116,7 +145,21 @@ export class WatchList extends Component {
     }
 
     toggleForm = (e) => {
-        this.setState({showForm: true})
+        let movie = this.state.movies
+
+        // eslint-disable-next-line array-callback-return
+        movie.map(movie => {
+          if(e === movie.id){
+            return(
+              this.setState({form: movie}, () => {
+                  this.setState({showForm: true})
+              })
+            ) 
+
+          }
+
+      })
+        
     }
     
 
@@ -135,7 +178,7 @@ export class WatchList extends Component {
             <MovieCard 
             onClick={(e) => this.MovieInfo(e)} 
             type="watch" 
-            watched={(e) => this.toggleForm(e)} 
+            watched={(id) => this.toggleForm(id)} 
             remove={(e) => this.props.remove(e)} key={movie.id} 
             rating={(movie.vote_average * 10)} 
             id={movie.id} 
@@ -166,7 +209,7 @@ export class WatchList extends Component {
                 </div>
             </Container>
             <MovieModal tmbd="true" closeBtn={() => this.closeBtn()} toggleModal={(e) => this.toggleModal(e)} movie={this.state.modal} show={this.state.showModal}/>
-            <WatchedModal submitForm={this.submitRating} toggleModal={(e) => this.toggleModal(e)} showForm={this.state.showForm} />
+            <WatchedModal movie={this.state.form} submitForm={this.submitRating} toggleModal={(e) => this.toggleModal(e)} showForm={this.state.showForm} />
             </React.Fragment>
         )
     }

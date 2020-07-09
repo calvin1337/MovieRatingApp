@@ -23,17 +23,26 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height:200px;
+    height:300px;
     width:400px;
-    
-}
-
-.inputForm{
     display:flex;
     justify-content: center;
     justify-items:center;
     align-items:center;
     align-content: center;
+}
+
+.inputForm{
+    
     flex-direction: column;
     margin:20px;
+    text-align:center;
+}
+
+.inputForm label{
+    display:flex
+}
+
+.inputForm span{
+    margin: auto;
 }

@@ -9,7 +9,7 @@ export class WatchedList extends Component {
     submitRating = (e) => {
         e.preventDefault();
         let rating = document.getElementById("ratingInput").value
-        this.props.submitForm(rating, this.props.id)
+        this.props.submitForm(rating, this.props.movie.id)
     }
     render() {
         return (
@@ -17,6 +17,7 @@ export class WatchedList extends Component {
                 <div className="watched-box">
                     
                     <form className="inputForm" >
+                    <h2>{this.props.movie.title}</h2>
                         <label htmlFor="rating"><span>Rating / 10</span></label>
                         <input type="text" id="ratingInput"></input>
                         <button onClick={(e) => this.submitRating(e)} type="submit" style={{marginTop: "10px"}} className="btn btn-secondary">Submit rating and add to list</button>
