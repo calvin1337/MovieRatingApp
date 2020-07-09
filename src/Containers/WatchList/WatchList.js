@@ -128,7 +128,9 @@ export class WatchList extends Component {
       })
         axios.post("https://movieapp-aa3df.firebaseio.com/movies.json", data)
         .then( response => {
-            this.setState({showForm : !this.state.showForm})
+            this.setState({showForm : !this.state.showForm}, () => {
+                this.props.remove(id)
+            })
             
         });
     }
