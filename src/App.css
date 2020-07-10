@@ -52,7 +52,13 @@ align-items:center;
 
 
 }
+h2  {
+    font-size:1.6rem;
+}
 
+h4 {
+    font-size:1.2rem;
+}
 .addBtn{
     border:none;   
     background:transparent;

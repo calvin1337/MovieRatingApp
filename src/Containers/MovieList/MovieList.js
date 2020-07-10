@@ -4,7 +4,7 @@ import {Container, Row} from "react-bootstrap"
 import Pagination from 'react-bootstrap/Pagination'
 import MovieCard from "../../Components/MovieCard/MovieCard"
 import MovieModal from '../../Components/MovieCard/MovieModal/MovieModal';
-
+import SearchBar from "../../Components/SearchBar/SearchBar"
 
 export class MovieList extends Component {
 
@@ -77,6 +77,24 @@ export class MovieList extends Component {
       document.body.scroll = "yes";
     }
 
+    updateSearch = (e) => {
+        this.setState({search: e.target.value}, () => {
+            const API_KEY = process.env.REACT_APP_NOT_SECRET_CODE;
+            axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${this.state.search}&page=1&include_adult=false`)
+            .then(res => {
+                console.log(res)
+                let movies = res.data.results
+                this.setState({movies: movies})
+                })
+        })
+        
+        if(e.target.value === ""){
+            this.setState({search: ""}, () => {
+                this.getMovies()
+            })
+            
+        }
+    }
 
     render() {
 
@@ -118,6 +136,9 @@ export class MovieList extends Component {
             <Container>
             <div  style={{paddingTop:"50px", paddingBottom:"50px", textAlign:"center"}}>
                     <h1>Movie List</h1> 
+                </div>
+                <div>
+                <SearchBar updateSearch={(e) => this.updateSearch(e)} />
                 </div>
                 <div className="movieContainer pt-50">
                     <Row>
