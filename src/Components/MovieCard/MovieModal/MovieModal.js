@@ -17,7 +17,7 @@ export class MovieModal extends Component {
         let movieRelease = ""
         let rating = ""
         let imbd = ""
-        let runtime = ""
+        
         let disc = ""
 
         if(this.props.movie !== ""){
@@ -26,7 +26,7 @@ export class MovieModal extends Component {
             movieRelease = this.props.movie.release
             rating = (this.props.movie.rating / 10 )
             imbd = (this.props.movie.imbd / 10 )
-            runtime = this.props.movie.runtime
+            
             disc = this.props.movie.disc
         }
 
@@ -36,7 +36,7 @@ export class MovieModal extends Component {
             rating = "N/A"
             movieRelease = this.props.movie.release_date
             imbd = this.props.movie.vote_average
-            runtime = `${this.props.movie.runtime} mins`
+            
             disc = this.props.movie.overview
         }
 
@@ -50,7 +50,7 @@ export class MovieModal extends Component {
                     <button className="closeBtn" id="close">
                      <FontAwesomeIcon onClick={() => this.props.closeBtn()}  icon={faTimes} size="1x"/> </button>
                     <h1>{movieTitle}</h1>
-                            <h6>{movieRelease} <strong>|</strong> {runtime}</h6>
+                            <h6>{movieRelease}</h6>
                             <p>{disc}</p>
                             <div className="modalRating">
                             <h5><strong>My Rating: </strong>{rating} / 10</h5>
