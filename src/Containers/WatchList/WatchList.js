@@ -5,7 +5,7 @@ import {Row, Container} from "react-bootstrap"
 import MovieCard from "../../Components/MovieCard/MovieCard"
 import MovieModal from '../../Components/MovieCard/MovieModal/MovieModal';
 import WatchedModal from "../../Components/MovieCard/WatchedModal/WatchedModal"
-
+import Spinner from "../../Components/Spinner/Spinner"
 
 import axios from "axios"
 
@@ -14,7 +14,6 @@ export class WatchList extends Component {
     state = {
         movies: [],
         watchList: this.props.watchList,
-        
         search: "",
         showModal: false,
         modal: "",
@@ -22,25 +21,45 @@ export class WatchList extends Component {
         form: "",
     }
 
+    
+    
    componentDidMount() {
-        this.loadWatchList()
+    this.props.getWatchList()
+    this.loadWatchList()
+    
+        
     }
 
     componentDidUpdate(){
+        
         if(this.state.watchList.length < this.state.movies.length ){
+            console.log(4)
             this.loadWatchList()
         }
 
         if(this.state.watchList.length === 0 && this.state.movies.length === 1){
+            console.log(3)
             this.loadWatchList()
         }
 
-       console.log(this.state.watchList.length, this.state.movies.length)
+        if(this.state.watchList.length === 0 && this.state.movies.length === 0){
+            console.log(2)
+            this.props.getWatchList()
+            
+        }
+
+        if(this.state.watchList.length !== this.props.watchList.length){
+            console.log(1)
+            this.setState({watchList: this.props.watchList}, () => {
+                this.loadWatchList()
+            })
+        }
     }
 
    
 
     loadWatchList = () => {
+        
         if(this.props.watchList.length > 0){
             const API_KEY = process.env.REACT_APP_NOT_SECRET_CODE;
         let movies = []
@@ -57,7 +76,7 @@ export class WatchList extends Component {
         
         }
         
-        if(this.props.watchList.length === 0){
+        if(this.props.watchList.length === 20){
             let movies = []
             this.setState({movies: movies})
         }
@@ -176,24 +195,31 @@ export class WatchList extends Component {
         )
         let view = ""
 
-        view = filteredMovie.map(movie => (
-            <MovieCard 
-            onClick={(e) => this.MovieInfo(e)} 
-            type="watch" 
-            watched={(id) => this.toggleForm(id)} 
-            remove={(e) => this.props.remove(e)} key={movie.id} 
-            rating={(movie.vote_average * 10)} 
-            id={movie.id} 
-            title={movie.title} date={movie.release_date} 
-            image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} 
-            />
-
-            ))
+        if(this.state.movies.length !== this.props.watchList.length){
+            view = <Spinner />
+        }
+        if(this.state.movies.length === this.props.watchList.length && this.props.watchList.length > 0){
+            view = filteredMovie.map(movie => (
+                <MovieCard 
+                onClick={(e) => this.MovieInfo(e)} 
+                type="watch" 
+                watched={(id) => this.toggleForm(id)} 
+                remove={(e) => this.props.remove(e)} key={movie.id} 
+                rating={(movie.vote_average * 10)} 
+                id={movie.id} 
+                title={movie.title} date={movie.release_date} 
+                image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} 
+                />
+    
+                ))
+        }
         
-            if(this.state.movies.length === 0){
+        
+            if(this.state.movies.length === 0 && this.props.watchList === 0){
                 view = <div style={{margin:"auto"}}><h1 style={{textAlign:"center"}}>No data!</h1> <h1>Add movies from the movie list</h1></div>  
             }
 
+            
         return (
             <React.Fragment>
             

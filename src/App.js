@@ -7,7 +7,7 @@ import About from "./Containers/About/About"
 import { BrowserRouter as Router , Route, Switch} from 'react-router-dom'
 import MovieList from './Containers/MovieList/MovieList';
 import WatchList from './Containers/WatchList/WatchList';
-
+import axios from "axios"
 
 
 class App extends Component{
@@ -16,8 +16,27 @@ class App extends Component{
     watchlist: []
   }
 
+  getWatchList = () => {
+    axios.get("https://movieapp-aa3df.firebaseio.com/watchList.json")
+    .then(res => {
+      
+      let watchList = []
+      for(let key in res.data){
+        watchList.push(res.data[key].id)
+        
+      }
+      this.setState({watchlist: watchList})
+    })
+  }
+
   addMovieWatchList = (e) => {
         this.state.watchlist.push(e)
+        let data = {
+          id: e
+  }
+
+  axios.post("https://movieapp-aa3df.firebaseio.com/watchList.json" , data)
+  .then(res => console.log(e))
     }
 
     removeMovie = (id) => {
@@ -32,6 +51,7 @@ class App extends Component{
   watched = (id, rating) => {
     console.log(id, rating)
   }
+
   render(){
     return (
       <div>
@@ -59,7 +79,7 @@ class App extends Component{
 
         <Route path="/watchlist" exact render={props => (
           
-          <WatchList watched={(x, i) => this.watched(x, i)} remove={(e) => this.removeMovie(e)} watchList={this.state.watchlist} />
+          <WatchList getWatchList={this.getWatchList} watched={(x, i) => this.watched(x, i)} remove={(e) => this.removeMovie(e)} watchList={this.state.watchlist} />
           
         
          )} />
