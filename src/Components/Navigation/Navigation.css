@@ -7,46 +7,137 @@ nav{
     
   }
 
-nav a {
+nav .linkContainer a {
       color:white;
       text-decoration: none;  
       font-size: 18px;
   }
 
-  a:hover{
+  .linkContainer a:hover{
     color:#fff;
   }
 
-  nav li {
+  nav .linkContainer li {
     display:inline-block;
     margin:10px;
   }
 
  
- nav ul {
+ nav .linkContainer ul {
    padding-right:20px;
    margin-bottom:0;
  }
 
- nav span {
+ nav .logoContainer span {
    display:flex;
    padding-left:20px;
    align-items: center;
    color: #a4acc4;
  }
 
- nav span svg{
+ nav .logoContainer span svg{
    margin-left:5px;
  }
+
+ .navbar-toggler{
+   display:none;
+   color:#eee;
+   font-size:30px;
+ }
+
+ .navDropDown {
+  display:none;
+}
+
 
  @media (max-width: 550px){
    .logoContainer{
       display:none;
    }
 
-   nav ul {
+   nav .linkContainer ul {
     padding-left:20px;
     margin-bottom:0;
     padding-right:0;
   }
  }
+
+
+ @media only screen and (max-width: 991px) and (min-width: 768px) {
+  .navbar-toggler {
+    display: none ;
+}
+
+}
+
+@media only screen and (min-width: 992px) and (max-width:1199px){
+    .navbar-toggler{
+        display:none;
+    }
+   
+}
+
+@media only screen and (max-width: 767px){
+    .navbar-toggler{
+        display:flex;
+        
+        z-index: 100;
+    }
+
+    .logoContainer{
+      margin-right:10px;
+    }
+
+    .navDropDown {
+      position: absolute;
+      text-align: center;
+      width:100%;
+      transform: translateY(-100%) ;
+      background:#222; 
+      z-index: 10;
+      top: 0;
+    left: 0;
+    height:300px;
+    display:flex;
+  flex-direction: column;
+  
+  justify-content: center;
+  align-items: center;
+  -webkit-transition: all .4s ease-out;
+    transition: all .4s ease-out;
+    }
+
+    
+
+  .linkContainer{
+    display:none;
+  }
+
+  .navContainer{
+    position: relative;
+  }
+} 
+
+.dropDown a {
+  color:white;
+  text-decoration: none;  
+  font-size: 18px;
+}
+  
+
+
+
+
+.navDropDown ul{
+  position: relative;
+}
+
+.navDropDown span{
+  color: #a4acc4;
+}
+
+
+.showNav .navDropDown{
+    transform:translateY(0) !important;
+    
+}
