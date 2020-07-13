@@ -200,9 +200,12 @@ export class WatchList extends Component {
             }
         )
         let view = ""
-        view = <Spinner />
+        if(this.props.loaded === false){
+            view = <Spinner />
+        }
+        
 
-        if(this.state.loaded === true && this.props.watchList.length === 0){
+        if(this.props.loaded === true && this.props.watchList.length === 0){
             view = <div style={{margin:"auto"}}><h1 style={{textAlign:"center"}}>No data!</h1> <h1>Add movies from the movie list</h1></div>  
         }
 
