@@ -19,6 +19,7 @@ export class WatchList extends Component {
         modal: "",
         showForm: false,
         form: "",
+        loaded: this.props.loaded
     }
 
     
@@ -33,23 +34,23 @@ export class WatchList extends Component {
     componentDidUpdate(){
         
         if(this.state.watchList.length < this.state.movies.length ){
-            console.log(4)
+            
             this.loadWatchList()
         }
 
         if(this.state.watchList.length === 0 && this.state.movies.length === 1){
-            console.log(3)
+            
             this.loadWatchList()
         }
 
         if(this.state.watchList.length === 0 && this.state.movies.length === 0){
-            console.log(2)
+            
             this.props.getWatchList()
             
         }
 
         if(this.state.watchList.length !== this.props.watchList.length){
-            console.log(1)
+            
             this.setState({watchList: this.props.watchList}, () => {
                 this.loadWatchList()
             })
@@ -64,9 +65,11 @@ export class WatchList extends Component {
             const API_KEY = process.env.REACT_APP_NOT_SECRET_CODE;
         let movies = []
         for(var i = 0; i < this.state.watchList.length; i++){
-            axios.get(`https://api.themoviedb.org/3/movie/${this.state.watchList[i]}?api_key=${API_KEY}&language=en-US`)
+            let keym = this.state.watchList[i].key
+            axios.get(`https://api.themoviedb.org/3/movie/${this.state.watchList[i].id}?api_key=${API_KEY}&language=en-US`)
+            
             .then(res => {
-                movies.push({...res.data})
+                movies.push({...res.data, key: keym})
                 this.setState({movies: movies})
                
                 })
@@ -76,9 +79,11 @@ export class WatchList extends Component {
         
         }
         
-        if(this.props.watchList.length === 20){
+        if(this.props.watchList.length === 0){
             let movies = []
-            this.setState({movies: movies})
+            this.setState({movies: movies}, () => {
+                this.loaded()
+            })
         }
     }
 
@@ -161,7 +166,8 @@ export class WatchList extends Component {
     }
 
     loaded = () => {
-        this.setState({loaded:true})
+        
+        
         
     }
 
@@ -194,17 +200,21 @@ export class WatchList extends Component {
             }
         )
         let view = ""
+        view = <Spinner />
 
-        if(this.state.movies.length !== this.props.watchList.length){
-            view = <Spinner />
+        if(this.state.loaded === true && this.state.movies.length === 0){
+            view = <div style={{margin:"auto"}}><h1 style={{textAlign:"center"}}>No data!</h1> <h1>Add movies from the movie list</h1></div>  
         }
+
+                    
+        
         if(this.state.movies.length === this.props.watchList.length && this.props.watchList.length > 0){
             view = filteredMovie.map(movie => (
                 <MovieCard 
                 onClick={(e) => this.MovieInfo(e)} 
                 type="watch" 
-                watched={(id) => this.toggleForm(id)} 
-                remove={(e) => this.props.remove(e)} key={movie.id} 
+                watched={(key, id) => this.toggleForm(movie.key, id)} 
+                remove={(key, id) => this.props.remove(movie.key, movie.id)} key={movie.key} 
                 rating={(movie.vote_average * 10)} 
                 id={movie.id} 
                 title={movie.title} date={movie.release_date} 
@@ -215,9 +225,7 @@ export class WatchList extends Component {
         }
         
         
-            if(this.state.movies.length === 0 && this.props.watchList === 0){
-                view = <div style={{margin:"auto"}}><h1 style={{textAlign:"center"}}>No data!</h1> <h1>Add movies from the movie list</h1></div>  
-            }
+            
 
             
         return (

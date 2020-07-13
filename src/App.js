@@ -13,7 +13,8 @@ import axios from "axios"
 class App extends Component{
 
   state = {
-    watchlist: []
+    watchlist: [],
+    loaded: false
   }
 
   getWatchList = () => {
@@ -22,32 +23,34 @@ class App extends Component{
       
       let watchList = []
       for(let key in res.data){
-        watchList.push(res.data[key].id)
-        
+      watchList.push({id: res.data[key].id, key: key})
+        console.log(watchList)
       }
-      this.setState({watchlist: watchList})
+      this.setState({watchlist: watchList}, () =>{
+        this.setState({loaded:true})
+      })
     })
   }
 
-  addMovieWatchList = (e) => {
-        this.state.watchlist.push(e)
+  addMovieWatchList = (id) => {
+          
         let data = {
-          id: e
+          id: id
   }
 
   axios.post("https://movieapp-aa3df.firebaseio.com/watchList.json" , data)
-  .then(res => console.log(e))
+  .then(res => console.log(id))
     }
 
-    removeMovie = (id) => {
-      let newArr = this.state.watchlist
-      for (var i = newArr.length - 1; i >= 0; --i) {
-        if (newArr[i] === id) {
-            newArr.splice(i,1);
-            this.setState({watchlist: newArr})
-        }
-    }
+    removeMovie = (key, id) => {
+      
+      
+    axios.delete(`https://movieapp-aa3df.firebaseio.com/watchList/${key}.json`)
+    .then(res => this.setState({ watchlist:[...this.state.watchlist.filter
+        (movie => movie.id !== id)]})) 
   }
+
+
   watched = (id, rating) => {
     console.log(id, rating)
   }
@@ -79,7 +82,7 @@ class App extends Component{
 
         <Route path="/watchlist" exact render={props => (
           
-          <WatchList getWatchList={this.getWatchList} watched={(x, i) => this.watched(x, i)} remove={(e) => this.removeMovie(e)} watchList={this.state.watchlist} />
+          <WatchList loaded={this.state.loaded} getWatchList={this.getWatchList} watched={(x, i) => this.watched(x, i)} remove={(key, id) => this.removeMovie(key, id)} watchList={this.state.watchlist} />
           
         
          )} />
