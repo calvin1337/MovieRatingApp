@@ -131,11 +131,17 @@ nav .linkContainer a {
 .dropDown a {
   color:white;
   text-decoration: none;  
-  font-size: 18px;
+  font-size: 22px;
+  margin-top:10px;
 }
-  
 
+.dropDown a:hover{
+  border-bottom: 1px dotted white;
+}
 
+.dropDown li{
+  margin-top:5px;
+}
 
 
 .navDropDown ul{
@@ -144,6 +150,7 @@ nav .linkContainer a {
 
 .navDropDown span{
   color: #a4acc4;
+  font-size:26px
 }
 
 
