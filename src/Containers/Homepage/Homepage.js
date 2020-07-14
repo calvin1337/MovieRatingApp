@@ -174,10 +174,12 @@ export class Homepage extends Component {
 
         return (
            
-            <Container>
-                <div  style={{paddingTop:"50px", paddingBottom:"50px", textAlign:"center"}}>
+                <React.Fragment>
+                <header  style={{paddingTop:"50px", paddingBottom:"50px", textAlign:"center"}}>
                     <h1>Calvin's Movie Ratings <FontAwesomeIcon icon={faFilm} />  </h1> 
-                </div>
+                    <p>Movies I've watch and rated since lockdown</p>
+                </header>
+                <Container>
                 <SearchBar updateSearch={(e) => this.updateSearch(e)} />
                 <div className="TypeContainer">
                 
@@ -214,7 +216,7 @@ export class Homepage extends Component {
                 </div>
                 <MovieModal closeBtn={() => this.closeBtn()} toggleModal={(e) => this.toggleModal(e)} movie={this.state.modal} show={this.state.showModal}/>
             </Container>
-            
+            </React.Fragment>
             
         )
     }

@@ -22,6 +22,25 @@ export class Navigation extends Component {
             this.setState({toggle:false})
         }
     }
+
+    componentDidMount(){
+        document.addEventListener("mousedown", this.handleClick, false )
+    }
+
+    componentWillUnmount(){
+        document.removeEventListener("mousedown", this.handleClick, false)
+    }
+
+
+    handleClick = (e) => {
+        console.log(e.target)
+        let button = document.getElementById("toggler")
+        if(this.node.contains(e.target) && e.target !== button){
+            return;
+        } 
+
+        this.navToggle()
+    }
     
     render() {
         let toggle = ""
@@ -37,10 +56,10 @@ export class Navigation extends Component {
         return (
             
     
-            <nav id="navbar">
-                <div className="navbar-toggler">
-                <button onClick={() => this.navToggle()} className="navbar-toggler">
-                    <FontAwesomeIcon icon={toggle} />
+            <nav ref={node => this.node = node } id="navbar">
+                <div id="toggler" className="navbar-toggler">
+                <button  onClick={() => this.navToggle()} className="navbar-toggler">
+                    <FontAwesomeIcon  icon={toggle} />
                     </button>
                 </div>
                 <div className="logoContainer">
@@ -82,29 +101,29 @@ export class Navigation extends Component {
                 </ul>
                 
                 </div>
-                <div className="navDropDown">
+                <div  className="navDropDown">
                     <div className="dropDown">
                     <span>Calvin's Movie Ratings <FontAwesomeIcon icon={faFilm} /></span>
                 <ul>
                     
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/" onClick={() => this.navToggle()}>Home</Link>
                     </li>
                    
                     <li>
-                        <Link to="/about">About</Link>
+                        <Link to="/about" onClick={() => this.navToggle()}>About</Link>
                     </li>
                     
                     <li>
-                        <Link to="/Reviews">Reviews</Link>
+                        <Link to="/Reviews" onClick={() => this.navToggle()}>Reviews</Link>
                     </li>
                     
                      <li>
-                        <Link to="/movielist">Movie List</Link>
+                        <Link to="/movielist" onClick={() => this.navToggle()}>Movie List</Link>
                     </li>
                     
                      <li>
-                        <Link to="/watchlist">Watch List</Link>
+                        <Link to="/watchlist" onClick={() => this.navToggle()}>Watch List</Link>
                     </li>
                    
                 </ul>
