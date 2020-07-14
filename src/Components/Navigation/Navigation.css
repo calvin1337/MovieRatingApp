@@ -143,6 +143,9 @@ nav .linkContainer a {
   margin-top:5px;
 }
 
+.dropDown {
+  padding-top:30px;
+}
 
 .navDropDown ul{
   position: relative;
