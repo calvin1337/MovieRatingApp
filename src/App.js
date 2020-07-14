@@ -80,6 +80,15 @@ class App extends Component{
         
          )} />
 
+        <Route path="/Reviews" exact render={props => (
+          
+          <header style={{paddingTop:"50px", paddingBottom:"50px", textAlign:"center"}}>
+              <h1>Coming soon!</h1>
+          </header>
+          
+        
+         )} />
+
         <Route path="/watchlist" exact render={props => (
           
           <WatchList loaded={this.state.loaded} getWatchList={this.getWatchList} watched={(x, i) => this.watched(x, i)} remove={(key, id) => this.removeMovie(key, id)} watchList={this.state.watchlist} />
