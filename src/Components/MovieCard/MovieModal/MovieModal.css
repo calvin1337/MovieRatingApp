@@ -1,6 +1,7 @@
 .movie-modal{
     background-color: rgba(0, 0, 0, 0.75);
     position: fixed;
+    z-index: 500;
     top: 0;
     left: 0;
     right: 0;
@@ -26,7 +27,7 @@
     height:600px;
     display: grid;
   grid-template-columns: 1fr 1fr;
-  
+ 
   gap: 1px 1px;
   grid-template-areas: "MovieModalImage MovieModalInfo";
 }
