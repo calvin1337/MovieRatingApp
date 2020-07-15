@@ -33,7 +33,7 @@ export class Navigation extends Component {
 
 
     handleClick = (e) => {
-        console.log(e.target)
+        
         let button = document.getElementById("toggler")
         if(this.node.contains(e.target) && e.target !== button){
             return;

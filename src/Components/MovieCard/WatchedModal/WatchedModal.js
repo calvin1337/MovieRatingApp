@@ -9,7 +9,7 @@ export class WatchedList extends Component {
     submitRating = (e) => {
         e.preventDefault();
         let rating = document.getElementById("ratingInput").value
-        this.props.submitForm(rating, this.props.movie.id)
+        this.props.submitForm(rating, this.props.movie.id, this.props.movie.key)
     }
     render() {
         return (

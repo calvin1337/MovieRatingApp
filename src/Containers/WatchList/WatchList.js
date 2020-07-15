@@ -124,7 +124,7 @@ export class WatchList extends Component {
      
 
     }
-    submitRating = (rating, id) => {
+    submitRating = (rating, id, key) => {
         
         let data = {
 
@@ -153,7 +153,7 @@ export class WatchList extends Component {
         axios.post("https://movieapp-aa3df.firebaseio.com/movies.json", data)
         .then( response => {
             this.setState({showForm : !this.state.showForm}, () => {
-                this.props.remove(id)
+                this.props.remove(key, id)
             })
             
         });
@@ -171,12 +171,13 @@ export class WatchList extends Component {
         
     }
 
-    toggleForm = (e) => {
+    toggleForm = (id) => {
         let movie = this.state.movies
 
         // eslint-disable-next-line array-callback-return
         movie.map(movie => {
-          if(e === movie.id){
+            console.log(movie.id, id)
+          if(id === movie.id){
             return(
               this.setState({form: movie}, () => {
                   this.setState({showForm: true})
@@ -216,11 +217,13 @@ export class WatchList extends Component {
                 <MovieCard 
                 onClick={(e) => this.MovieInfo(e)} 
                 type="watch" 
-                watched={(key, id) => this.toggleForm(movie.key, id)} 
-                remove={(key, id) => this.props.remove(movie.key, movie.id)} key={movie.key} 
+                watched={(id) => this.toggleForm(id)} 
+                remove={(key, id) => this.props.remove(movie.key, movie.id)} 
+                key={movie.key} 
                 rating={(movie.vote_average * 10)} 
                 id={movie.id} 
                 title={movie.title} date={movie.release_date} 
+                
                 image={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} 
                 />
     
