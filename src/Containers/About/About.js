@@ -13,7 +13,7 @@ export class About extends Component {
             </header>
             <Container className="aboutContent">
                 <h2>What is this project?</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, quibusdam. Itaque earum iste, sequi nulla obcaecati aspernatur nostrum pariatur voluptatem adipisci tempora in necessitatibus et totam! Magnam ab corporis pariatur?</p>
+        <p>I decided to make this project so I could track and rate movies I watched during the COVID lockdown</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore sint aliquid culpa quae ex porro, dolor ipsum debitis et libero?</p>
         <h2>Tell Me More</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, nemo! Nam, incidunt rem. Nobis quisquam suscipit vitae quasi dolore, ratione porro dolor accusamus! Veritatis delectus ab recusandae quibusdam? Laborum, facilis velit aliquam mollitia magnam excepturi consequatur natus id doloribus quasi!</p>
