@@ -23,9 +23,6 @@ export class WatchedBefore extends Component {
     }
 }
 
-let seenBefore = {
-    border: "1px solid black"
-    
-}
+
 
 export default WatchedBefore
