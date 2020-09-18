@@ -161,7 +161,7 @@ export class Homepage extends Component {
 
             if(this.state.view === "grid"){
                view = filteredMovie.map(movie => (
-                    <MovieCard type="rating" key={movie.id}  onClick={(e) => this.MovieInfo(e)} id={movie.id} title={movie.title} date={movie.release} image={movie.image} rating={movie.rating}  />
+                    <MovieCard seen={movie.seen} type="rating" key={movie.id}  onClick={(e) => this.MovieInfo(e)} id={movie.id} title={movie.title} date={movie.release} image={movie.image} rating={movie.rating}  />
                 ))
             }
 

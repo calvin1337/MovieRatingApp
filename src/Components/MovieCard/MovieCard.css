@@ -76,4 +76,29 @@ display:flex;
   .movieList {
     cursor: pointer;
   }
+
+
  
+ .notSeen h4{
+  border:1px solid black;
+  padding:5px;
+  display: inline;
+  border-radius:5px;
+  font-size:14px;
+ }
+
+ .notSeen{
+  margin-top:10px;
+ }
+
+ .seenBefore{
+   margin-top:10px;
+ }
+
+ .seenBefore h4{
+  border:1px solid black;
+  padding:5px;
+  display: inline;
+  border-radius:5px;
+  font-size:14px;
+ }

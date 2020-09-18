@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Col } from "react-bootstrap"
 import StarRating from './StarRating/StarRating'
+import WatchedBefore from "./WatchedBefore"
 import "./MovieCard.css";
 
 export class MovieCard extends Component {
@@ -8,7 +9,12 @@ export class MovieCard extends Component {
     render() {
         let type = ""
         if(this.props.type === "rating"){
-        type = <StarRating rating={this.props.rating}/>
+        type = (
+            <div>
+            <StarRating rating={this.props.rating}/>
+            <WatchedBefore seen={this.props.seen}/>
+            
+            </div>)
         } if(this.props.type === "watchList") {
             type = <button className="btn btn-secondary" onClick={(e) => this.props.watchList(this.props.id)}>Add To Watch List</button>
         } if(this.props.type === "watch") {
