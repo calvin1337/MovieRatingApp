@@ -34,16 +34,25 @@
 }
 
 .inputForm{
-    
     flex-direction: column;
     margin:20px;
     text-align:center;
 }
 
-.inputForm label{
+.firstLabel{
     display:flex
 }
 
 .inputForm span{
     margin: auto;
+}
+
+.radioCheckbox{
+    display:flex;
+   
+    justify-content:space-between
+}
+
+.radioCheckbox label{
+margin-left:5px;
 }

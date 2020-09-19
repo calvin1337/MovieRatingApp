@@ -124,7 +124,7 @@ export class WatchList extends Component {
      
 
     }
-    submitRating = (rating, id, key) => {
+    submitRating = (rating, id, key, seen) => {
         
         let data = {
 
@@ -143,7 +143,8 @@ export class WatchList extends Component {
                   id: id,
                   rating: (rating * 10),
                   imbd: (movie.vote_average * 10),
-                  disc: movie.overview
+                  disc: movie.overview,
+                  seen: seen
               }
             ) 
 
