@@ -15,6 +15,18 @@ export class WatchedBefore extends Component {
                 </div>
             )
         }
+        if(this.props.seen === true && this.props.width === "sameWidth"){
+            seen = (<div className="seenBefore">
+                  <h4 style={{width:"139px", display:"block", textAlign:"center"}}>Seen Before</h4>
+              </div>)
+          }
+          if(this.props.seen !== true && this.props.width === "sameWidth"){
+            seen = (
+                <div className="notSeen">
+                    <h4 style={{display:"block", textAlign:"center"}}>First Time Watching</h4>
+                </div>
+            )
+        }
         return (
             <div>
                 {seen}

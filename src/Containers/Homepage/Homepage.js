@@ -167,7 +167,7 @@ export class Homepage extends Component {
 
             if(this.state.view === "list"){
                 view = filteredMovie.map(movie => (
-                    <MovieList type="rating" key={movie.id}  onClick={(e) => this.MovieInfo(e)} id={movie.id} title={movie.title} date={movie.release} image={movie.image} rating={movie.rating}  />
+                    <MovieList seen={movie.seen} width={"sameWidth"} type="rating" key={movie.id}  onClick={(e) => this.MovieInfo(e)} id={movie.id} title={movie.title} date={movie.release} image={movie.image} rating={movie.rating}  />
                 ))
             }
             
