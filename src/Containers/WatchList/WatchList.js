@@ -155,9 +155,14 @@ export class WatchList extends Component {
         .then( response => {
             this.setState({showForm : !this.state.showForm}, () => {
                 this.props.remove(key, id)
+                this.confirmPost(data.title)
             })
             
         });
+    }
+
+    confirmPost = (title) => {
+        alert(`Added ${title} To Watchlist!`)
     }
 
     closeBtn = () => {
