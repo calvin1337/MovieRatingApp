@@ -103,3 +103,9 @@ display:flex;
   border-radius:5px;
   font-size:14px;
  }
+
+ @media (max-width: 992px) {
+   .seenMobile{
+     display:none;
+   }
+ }

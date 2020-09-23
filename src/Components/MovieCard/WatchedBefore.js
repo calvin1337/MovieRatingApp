@@ -16,13 +16,13 @@ export class WatchedBefore extends Component {
             )
         }
         if(this.props.seen === true && this.props.width === "sameWidth"){
-            seen = (<div className="seenBefore">
+            seen = (<div className="seenBefore seenMobile">
                   <h4 style={{width:"139px", display:"block", textAlign:"center"}}>Seen Before</h4>
               </div>)
           }
           if(this.props.seen !== true && this.props.width === "sameWidth"){
             seen = (
-                <div className="notSeen">
+                <div className="notSeen seenMobile">
                     <h4 style={{display:"block", textAlign:"center"}}>First Time Watching</h4>
                 </div>
             )
