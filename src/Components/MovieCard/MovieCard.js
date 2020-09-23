@@ -28,6 +28,8 @@ export class MovieCard extends Component {
             )
         }
 
+        
+
         return (
             <Col md="6" lg="4" sm="6" xs="12" style={{marginTop:"10px"}}>
                  <div className="movie-card">
@@ -37,7 +39,8 @@ export class MovieCard extends Component {
                     <div className="movie-content">
                         <div className="movie-content-header">
                         <h2>{this.props.title} </h2>
-                        <h4>{this.props.date}</h4>
+                        <h4>Release: {this.props.date}</h4>
+                        <h4>Watched: {this.props.watchedDate}</h4>
                     </div>
                     <div className="movie-info">
                         

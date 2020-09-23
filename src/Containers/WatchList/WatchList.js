@@ -132,6 +132,18 @@ export class WatchList extends Component {
 
         let movie = this.state.movies
 
+        let month = new Date(); 
+        month = month.getMonth()
+        month = month + 1
+
+        let day = new Date();
+        day = day.getDate();
+
+        let year = new Date();
+        year = year.getFullYear();
+
+        let date = `${day}/${month}/${year}`
+
         // eslint-disable-next-line array-callback-return
         movie.map(movie => {
           if(id === movie.id){
@@ -144,7 +156,8 @@ export class WatchList extends Component {
                   rating: (rating * 10),
                   imbd: (movie.vote_average * 10),
                   disc: movie.overview,
-                  seen: seen
+                  seen: seen,
+                  date: date
               }
             ) 
 
