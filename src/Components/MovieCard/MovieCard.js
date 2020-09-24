@@ -10,7 +10,7 @@ export class MovieCard extends Component {
         let type = ""
         let dateRelease = ""
         let date = this.props.date
-        let dateRelease = date.split("-").reverse().join("/")
+        dateRelease = date.split("-").reverse().join("/")
         
         if(this.props.type === "rating"){
         type = (
