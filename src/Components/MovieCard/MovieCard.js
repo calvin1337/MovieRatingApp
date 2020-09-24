@@ -8,7 +8,7 @@ export class MovieCard extends Component {
     
     render() {
         let type = ""
-        let watchedDate = ""
+        let dateRelease = ""
         let date = this.props.date
         let dateRelease = date.split("-").reverse().join("/")
         
