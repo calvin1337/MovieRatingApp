@@ -9,8 +9,8 @@ export class MovieCard extends Component {
     render() {
         let type = ""
         let watchedDate = ""
-        let date = this.props.date
-        watchedDate = date.split("-").reverse.join("/")
+        let dateRelease = this.props.date
+        dateRelease = date.split("-").reverse().join("/")
         
         if(this.props.type === "rating"){
         type = (
@@ -44,8 +44,8 @@ export class MovieCard extends Component {
                     <div className="movie-content">
                         <div className="movie-content-header">
                         <h2>{this.props.title} </h2>
-                        <h4>Release: {this.props.date}</h4>
-                        <h4>Watched: {watchedDate}</h4>
+                        <h4>Release: {releaseDate}</h4>
+                        <h4>Watched: {this.props.watchedDate}</h4>
                     </div>
                     <div className="movie-info">
                         
