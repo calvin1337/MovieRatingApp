@@ -8,6 +8,9 @@ export class MovieCard extends Component {
     
     render() {
         let type = ""
+        let watchedDate = ""
+        let date = this.props.date
+           watchedDate = date.split("-").reverse.join"/"
         if(this.props.type === "rating"){
         type = (
             <div>
@@ -15,6 +18,7 @@ export class MovieCard extends Component {
             <WatchedBefore seen={this.props.seen}/>
             
             </div>)
+          
         } if(this.props.type === "watchList") {
             type = <button className="btn btn-secondary" onClick={(e) => this.props.watchList(this.props.id)}>Add To Watch List</button>
         } if(this.props.type === "watch") {
@@ -40,7 +44,7 @@ export class MovieCard extends Component {
                         <div className="movie-content-header">
                         <h2>{this.props.title} </h2>
                         <h4>Release: {this.props.date}</h4>
-                        <h4>Watched: {this.props.watchedDate}</h4>
+                        <h4>Watched: {watchedDate}</h4>
                     </div>
                     <div className="movie-info">
                         
