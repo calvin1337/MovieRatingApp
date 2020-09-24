@@ -44,7 +44,7 @@ export class MovieCard extends Component {
                     <div className="movie-content">
                         <div className="movie-content-header">
                         <h2>{this.props.title} </h2>
-                        <h4>Release: {releaseDate}</h4>
+                        <h4>Release: {dateRelease}</h4>
                         <h4>Watched: {this.props.watchedDate}</h4>
                     </div>
                     <div className="movie-info">
