@@ -157,6 +157,26 @@ export class Homepage extends Component {
                 filteredMovie.sort((a, b) => (b.release > a.release ? 1 : -1))
             }
 
+            if(this.state.sort === "First Time"){
+                let FirstTime = []
+                for(let i = 0; i < filteredMovie.length; i++){
+                    if(filteredMovie[i].seen === false){
+                        FirstTime.push(filteredMovie[i])
+                    }
+                }
+                filteredMovie = FirstTime
+            }
+
+            if(this.state.sort === "Seen Before"){
+                let SeenBefore = []
+                for(let i = 0; i < filteredMovie.length; i++){
+                    if(filteredMovie[i].seen === true){
+                        SeenBefore.push(filteredMovie[i])
+                    }
+                }
+                filteredMovie = SeenBefore
+            }
+
             let view = ""
 
             if(this.state.view === "grid"){
@@ -200,6 +220,8 @@ export class Homepage extends Component {
                     <option value="Z-A">Z-A</option>
                     <option value="Low rating">Lowest rating</option>
                     <option value="High rating">Highest rating</option>
+                    <option value="First Time">First Time Watching </option>
+                    <option value="Seen Before">Seen Before </option> 
                     <option value="release-date-new">Release date {"(new - old)"}</option>
                     <option value="release-date-old">Release date {"(old - new)"}</option>                
                 </select>
